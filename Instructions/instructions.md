@@ -20,7 +20,8 @@
 * [**Rule 10: Workspace Hygiene & Temporary File Cleanup (Zero Clutter Policy)**](#rule-10-workspace-hygiene--temporary-file-cleanup-zero-clutter-policy)
 * [**Rule 11: Direct Backend Publishing & Input Auto-Purge Protocol**](#rule-11-direct-backend-publishing--input-auto-purge-protocol)
 * [**Rule 12: Standardized Post-Publishing Summary Report Table**](#rule-12-standardized-post-publishing-summary-report-table)
-* [**Rule 13: Pre-Delivery Quality Assurance Verification**](#rule-13-pre-delivery-quality-assurance-verification)
+* [**Rule 13: Progress Tracking Protocol (cloudesoft-exams_progress.txt)**](#rule-13-progress-tracking-protocol-cloudesoft-exams_progresstxt)
+* [**Rule 14: Pre-Delivery Quality Assurance Verification**](#rule-14-pre-delivery-quality-assurance-verification)
 
 ---
 
@@ -37,7 +38,8 @@ The AI Publisher MUST:
 2. **EXECUTE IMMEDIATELY**: Clean the input, resolve any missing metadata using standard defaults (`"Not specified"`), run the Python publisher pipeline, generate all 3 deliverables into [`Output/`](file:///c:/Users/user/Desktop/MyCodes/Projects/Mconnect-publisher/Output), and publish directly to the Backend Publishing API.
 3. **DO NOT QUERY UNLESS ASKED**: Do not call the search/query API during standard publishing. Only use the direct publish API.
 4. **PURGE INPUT & CLEAN UP**: Clear the [`Input/`](file:///c:/Users/user/Desktop/MyCodes/Projects/Mconnect-publisher/Input) directory and remove all temporary build scripts.
-5. **PRESENT THE SUMMARY TABLE**: Present the standardized summary table (Rule 12) with clickable links and publishing status.
+5. **UPDATE PROGRESS FILE**: Append the published course code into [`cloudesoft-exams_progress.txt`](file:///c:/Users/user/Desktop/MyCodes/Projects/Mconnect-publisher/cloudesoft-exams_progress.txt) following the 10-items-per-page rule (Rule 13).
+6. **PRESENT THE SUMMARY TABLE**: Present the standardized summary table (Rule 12) with MTID, clickable links, and status.
 
 ---
 
@@ -385,7 +387,30 @@ After completing generation and publishing, the AI Publisher MUST present a clea
 
 ---
 
-## Rule 13: Pre-Delivery Quality Assurance Verification
+## Rule 13: Progress Tracking Protocol (cloudesoft-exams_progress.txt)
+
+To track published materials across batches and prevent duplicated effort:
+
+### 13.1 File Location & Structure
+* **File Path**: [`cloudesoft-exams_progress.txt`](file:///c:/Users/user/Desktop/MyCodes/Projects/Mconnect-publisher/cloudesoft-exams_progress.txt) in the project root.
+* **Format**: Materials are cataloged in chronological pages (`Page 1`, `Page 2`, `Page 3`, etc.).
+* **Indentation**: Every course entry is indented with a single tab character (`\t[COURSE_CODE]`), e.g., `\tPHY 221`.
+
+### 13.2 Pagination Rules (Strict 10 Items Per Page)
+1. **Locate the Latest Page**: Inspect the bottom page block in `cloudesoft-exams_progress.txt` (e.g. `Page 5`).
+2. **Count Items on the Latest Page**:
+   * If the latest page contains **fewer than 10 course codes** (e.g., Page 5 currently contains 3 items), append the newly published course code (`\t[COURSE_CODE]`) directly to that page.
+   * If the latest page has reached **exactly 10 items**, automatically create the next page section:
+     ```text
+     Page [N+1]
+     	[COURSE_CODE]
+     ```
+3. **Duplicate Prevention**: If the course code is already listed under the active page, do not insert a duplicate.
+4. **Spacing & Cleanliness**: Maintain a clean blank line separating each page section.
+
+---
+
+## Rule 14: Pre-Delivery Quality Assurance Verification
 
 Before finalizing output, the AI Publisher must check off:
 - [x] **Zero Hesitation Adherence**: Pipeline executed immediately upon receiving input without asking clarification questions.
@@ -397,4 +422,6 @@ Before finalizing output, the AI Publisher must check off:
 - [x] **Zero Leftovers**: Any temporary builder scripts (e.g. `build_*.py`, `temp_*.py`, scratch files) have been cleaned up and deleted.
 - [x] **Input Directory Cleared**: Processed files from [`Input/`](file:///c:/Users/user/Desktop/MyCodes/Projects/Mconnect-publisher/Input) have been purged.
 - [x] **Direct Publish Only**: Deliverables posted directly to `/api/v1/dashboard/materials/publish` without executing query/search calls.
-- [x] **Summary Report Provided**: Clean markdown summary table (Rule 12) rendered in the response.
+- [x] **Progress File Updated**: Appended course code to [`cloudesoft-exams_progress.txt`](file:///c:/Users/user/Desktop/MyCodes/Projects/Mconnect-publisher/cloudesoft-exams_progress.txt) following the 10-items-per-page rule.
+- [x] **Summary Report Provided**: Clean markdown summary table (Rule 12) rendered in the response with MTID included.
+

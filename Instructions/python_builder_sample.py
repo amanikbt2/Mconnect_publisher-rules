@@ -714,11 +714,86 @@ def publish_material(data, pdf_path, thumbnail_path=None, tts_path=None, api_bas
                 pass
 
 
-def build_all(data=PSS314_SAMPLE, output_dir=None, publish=False, clear_input=False):
+PROGRESS_FILE = os.path.join(PROJECT_DIR, "cloudesoft-exams_progress.txt")
+
+
+def update_progress_file(course_code, progress_path=None):
+    """
+    Appends course_code to cloudesoft-exams_progress.txt following 
+    the 10-items-per-page rule (Rule 13).
+    """
+    if progress_path is None:
+        progress_path = PROGRESS_FILE
+
+    code_clean = course_code.strip()
+    if not os.path.exists(progress_path):
+        with open(progress_path, "w", encoding="utf-8") as f:
+            f.write(f"Page 1\n\t{code_clean}\n")
+        print(f"[PROGRESS] Initialized {progress_path} with Page 1: {code_clean}")
+        return
+
+    with open(progress_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    lines = content.splitlines()
+    pages = []
+    current_page = None
+    current_items = []
+
+    for line in lines:
+        stripped = line.strip()
+        if stripped.lower().startswith("page "):
+            if current_page is not None:
+                pages.append((current_page, current_items))
+            current_page = stripped
+            current_items = []
+        elif stripped:
+            current_items.append(stripped)
+
+    if current_page is not None:
+        pages.append((current_page, current_items))
+
+    if not pages:
+        pages.append(("Page 1", []))
+
+    last_page_title, last_page_items = pages[-1]
+
+    # Check if already in active page
+    if code_clean in last_page_items:
+        print(f"[PROGRESS] {code_clean} is already present in {last_page_title}.")
+        return
+
+    if len(last_page_items) >= 10:
+        try:
+            curr_num = int(last_page_title.split()[-1])
+            next_page_title = f"Page {curr_num + 1}"
+        except Exception:
+            next_page_title = f"Page {len(pages) + 1}"
+        pages.append((next_page_title, [code_clean]))
+        print(f"[PROGRESS] Page full (10 items). Started {next_page_title} with {code_clean}.")
+    else:
+        last_page_items.append(code_clean)
+        pages[-1] = (last_page_title, last_page_items)
+        print(f"[PROGRESS] Added {code_clean} to {last_page_title} (Item {len(last_page_items)}/10).")
+
+    out_lines = []
+    for p_title, items in pages:
+        out_lines.append(p_title)
+        for itm in items:
+            out_lines.append(f"\t{itm}")
+        out_lines.append("")
+
+    result_text = "\n".join(out_lines).strip() + "\n"
+    with open(progress_path, "w", encoding="utf-8") as f:
+        f.write(result_text)
+    print(f"[PROGRESS] Updated {progress_path} successfully.")
+
+
+def build_all(data=PSS314_SAMPLE, output_dir=None, publish=False, clear_input=False, track_progress=False):
     """
     Generates all 3 deliverables following Rule 2 naming conventions:
     [CourseCode]_[CourseTitle]_[Descriptor].[ext]
-    Optionally publishes to API and clears Input folder.
+    Optionally publishes to API, clears Input folder, and tracks progress.
     """
     if output_dir is None:
         output_dir = os.path.join(PROJECT_DIR, "Output")
@@ -750,7 +825,13 @@ def build_all(data=PSS314_SAMPLE, output_dir=None, publish=False, clear_input=Fa
 
     # Optional Publishing (Rule 11)
     if publish:
-        publish_material(data, pdf_out, img_out, tts_out)
+        pub_result = publish_material(data, pdf_out, img_out, tts_out)
+        if pub_result:
+            update_progress_file(data.get("course_code", code))
+
+    # Optional Progress Tracking (Rule 13)
+    if track_progress and not publish:
+        update_progress_file(data.get("course_code", code))
 
     # Optional Input Purge (Rule 11)
     if clear_input:
