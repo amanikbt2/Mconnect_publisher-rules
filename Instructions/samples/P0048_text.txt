@@ -1,0 +1,35 @@
+Good {nowtime} {firstname}, welcome to this PSS 314 Criminal Law revision session.
+
+We are revising the March 2024 special or supplementary examination. In the paper, answer Question One and any other three questions. As we move through each question, listen for the small hint that tells you how to organise your answer. A strong law answer usually defines the term, identifies the legal principles, explains them clearly, and gives a short relevant illustration.
+
+Question One, part A, asks you to define criminal law and distinguish it from civil law. Hint: begin by naming the protected interest, the parties, the purpose of the proceedings, the standard of proof, and the possible remedies. Criminal law mainly deals with conduct treated as an offence against the public, while civil law generally resolves disputes between private parties. Avoid simply listing differences without explaining what each difference means.
+
+Part B asks for the purposes of criminal law. You can answer this by naming and briefly explaining aims such as deterrence, punishment, incapacitation, rehabilitation, retribution, protection of the public, and maintaining social order. Add one sentence showing how a purpose operates in practice.
+
+Part C asks about the parties to a criminal offence. Start by naming the accused or offender, the victim or complainant, and the state or prosecution. Then explain the role each party plays. Remember that the complainant is not always the party who conducts the prosecution; criminal proceedings are ordinarily brought in the public interest.
+
+Question Two, part A, concerns sources of criminal law. Hint: name the source first, then give its legal role. Discuss the Constitution, statutes, subsidiary legislation where authorised, judicial precedent, and applicable principles of common law or received law where relevant to the Kenyan legal system. Be careful to distinguish a source that creates an offence from a source that interprets or applies the law.
+
+Part B asks for the essential elements of a crime. A useful structure is actus reus, mens rea, causation where required, and the absence of a valid defence. Define the physical element and the mental element, then explain why the prosecution must connect the accused person to both elements.
+
+Question Three, part A, asks about defences in criminal responsibility. Hint: organise the answer by naming each defence and stating the condition that makes it available. Depending on the offence and the facts, discuss self-defence, necessity, duress, insanity or mental incapacity, mistake, infancy, intoxication where legally relevant, and automatism. Do not treat every defence as automatic; explain the limits and the burden of establishing it.
+
+Part B asks you to define murder and explain its categories. Start with the unlawful killing of a person with the required intention or malice aforethought. Then name and explain the categories recognised by your course materials, taking care to distinguish the facts and mental element in each category. Use the exact statutory or case-law categories taught in class.
+
+Question Four, part A, asks about suicide. Hint: define the intentional ending of one's own life, then distinguish the types or patterns discussed in your notes. Keep the answer academic and explain the social, psychological, or legal significance of each type without turning it into a long narrative.
+
+Part B concerns assault. Begin with the definition, then name the various types and give one short explanation of each. A good answer distinguishes conduct involving unlawful apprehension of immediate force from conduct involving unlawful application of force, and then connects the classification to the relevant legal consequences.
+
+Question Five, part A, asks about stalking. You can answer this by defining repeated unwanted conduct that causes fear, distress, or serious alarm, then listing the circumstances that make the conduct stalking: persistence, unwanted contact, following, surveillance, threats, misuse of communication technology, or conduct that makes the target reasonably fear for safety. Link every example back to repetition, unwanted attention, and its effect on the person.
+
+Part B asks for typologies of stalkers. Hint: name each type from the course material and describe the main motivation in one or two sentences. Common classifications may include rejected, resentful, intimacy-seeking, incompetent, and predatory stalkers, but use the terminology and categories prescribed by your lecturer.
+
+Question Six, part A, asks about the motivation of cyber stalkers. Begin by naming motives such as control, revenge, jealousy, obsession, harassment, intimidation, identity concealment, or the desire to obtain information. Explain how online tools make persistence, anonymity, impersonation, and mass contact easier.
+
+Part B asks how cyber stalking can be prevented. Give practical and legal measures: strengthen account security, use multi-factor authentication, preserve evidence, block and report the offender, limit disclosure of personal information, review privacy settings, alert trusted people, and report serious threats to the relevant authorities. Present the measures as a clear list with brief explanations.
+
+Question Seven, part A, asks about rape. Define the offence using the legal elements taught in class, then briefly discuss its forms. Hint: organise the answer around lack of consent, coercion or force, the circumstances of the act, and the legally recognised forms or variations. Avoid confusing moral descriptions with the elements that must be proved in court.
+
+Part B asks about the criminalisation process in Kenya. You can answer this by explaining how conduct becomes a criminal offence through constitutional principles, legislation, interpretation by courts, enforcement, prosecution, trial, and sentencing. Mention the importance of legality, fair trial rights, evidence, and judicial oversight.
+
+Final exam tip, {firstname}: follow the marks. A ten-mark answer needs a definition plus several explained points, while a five-mark answer should be focused and precise. Use headings, number your points, and add a short application or example where it earns clarity. Good {nowtime}, and keep your legal reasoning organised.
